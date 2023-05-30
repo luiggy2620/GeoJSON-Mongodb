@@ -1,9 +1,9 @@
 package org.example;
 
-import org.example.database.Connection;
+import org.example.controller.Application;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println(Connection.getConnection().getMongodb());
+        new Application().start();
     }
 }
