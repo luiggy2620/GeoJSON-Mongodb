@@ -19,7 +19,7 @@ public class Connection {
         return connection;
     }
 
-    public MongoClient getMongodb() {
+    public MongoClient getDatabase() {
         if (mongodb == null) {
             try {
                 Dotenv dotenv = Dotenv.load();
