@@ -11,5 +11,6 @@ public class Logs {
 
     public void showGeoJSON(MongoCursor<Document> locations) {
         locations.forEachRemaining(System.out::println);
+
     }
 }

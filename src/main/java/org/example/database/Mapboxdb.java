@@ -48,7 +48,11 @@ public class Mapboxdb {
 
     public MongoCursor<Document> getLocations() {
         try {
+            long startTime = System.currentTimeMillis();
             locations = getLocationsCollection().find().iterator();
+            long endTime = System.currentTimeMillis();
+            long totalTime = endTime - startTime;
+            System.out.println("Time to read: " + totalTime + " milliseconds. - " + (totalTime / 1000.0) + " seconds.");
         } catch (MongoException exception) {
             System.out.println(exception);
         }

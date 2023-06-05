@@ -2,8 +2,10 @@ package org.example.controller;
 
 import org.example.database.Mapboxdb;
 import org.example.database.TemporalData;
+import org.example.model.GeoJSON;
 import org.example.view.Logs;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
@@ -36,8 +38,14 @@ public class Application {
     }
 
     private void postLocations() {
-        data.getData().forEach(geoJSON -> {
+        logs.showIndicator();
+        ArrayList<GeoJSON> amountData = data.getData(scanner.nextInt());
+        long startTime = System.currentTimeMillis();
+        amountData.forEach(geoJSON -> {
             mapboxdb.postLocation(geoJSON);
         });
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        System.out.println("Time to read " + amountData.size() + " documents: " + totalTime + " milliseconds. - " + (totalTime / 1000.0) + " seconds.");
     }
 }
